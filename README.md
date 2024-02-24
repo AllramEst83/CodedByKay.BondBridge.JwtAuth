@@ -53,5 +53,9 @@ Specify your license here. Common licenses for open-source projects include MIT,
 Contact
 For support or to contact the maintainers, please provide contact details or link to the project's issues page.
 
+### Pack the library like this
+```sh
+dotnet pack -c Release -o ./nuget
+```
 
 Remember to replace placeholder texts like "YourNamespace", "YourSecretKey", "YourIssuer", and "YourAudience" with the actual values specific to your project. Also, decide on a license that fits your project's needs and include it in the README.
