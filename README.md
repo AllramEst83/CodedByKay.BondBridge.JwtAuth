@@ -24,6 +24,7 @@ The `JwtAuthExtension` class library provides a straightforward and efficient wa
 To use the `JwtAuthExtension` in your project, follow these steps:
 
 1. In your `Startup.cs`, import the namespace:
+
    ```csharp
    using YourNamespace.JwtAuthExtension;
 
