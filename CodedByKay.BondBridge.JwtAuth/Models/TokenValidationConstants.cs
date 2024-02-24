@@ -1,6 +1,6 @@
 ﻿namespace CodedByKay.BondBridge.JwtAuth.Models
 {
-    internal class TokenValidationConstants
+    public class TokenValidationConstants
     {
         public static class Roles
         {
