@@ -25,9 +25,9 @@ To use the `JwtAuthExtension` in your project, follow these steps:
 
 1. In your `Startup.cs`, import the namespace:
 
-   ```csharp
+```csharp
    using YourNamespace.JwtAuthExtension;
-
+````
 Call the AddJwtAuthentication extension method within the ConfigureServices method of your Startup.cs, passing the necessary parameters:
 
 ```csharp
@@ -35,7 +35,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddJwtAuthentication(secretKey: "YourSecretKey", issuer: "YourIssuer", audience: "YourAudience");
 }
-
+```
 
 ### Configuration
 Customize your JWT authentication by modifying the parameters passed to AddJwtAuthentication:
