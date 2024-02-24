@@ -52,13 +52,13 @@ namespace CodedByKay.BondBridge.JwtAuth
             {
                 // Add policies for different roles to handle various types of users such as admin, user, editUser
                 options.AddPolicy(
-                    TokenValidationConstants.Policies.AuthAPIAdmin,
+                    TokenValidationConstants.Policies.CodedByKayBondBridgeApiAdmin,
                     policy => policy.RequireClaim(
                         TokenValidationConstants.Roles.Role,
                         TokenValidationConstants.Roles.AdminAccess));
 
                 options.AddPolicy(
-                    TokenValidationConstants.Policies.AuthAPICommonUser,
+                    TokenValidationConstants.Policies.CodedByKayBondBridgeApiCommonUser,
                     policy => policy.RequireClaim(
                         TokenValidationConstants.Roles.Role,
                         TokenValidationConstants.Roles.CommonUserAccess));
@@ -70,10 +70,10 @@ namespace CodedByKay.BondBridge.JwtAuth
         public static string GenerateToken(string secretKey, string issuer, string audience, string username, string role)
         {
             var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
-                new Claim(ClaimTypes.Role, role)
-            };
+        {
+            new Claim(JwtRegisteredClaimNames.Sub, username),
+            new Claim(TokenValidationConstants.Roles.Role, role)
+        };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -88,4 +88,5 @@ namespace CodedByKay.BondBridge.JwtAuth
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
+
 }

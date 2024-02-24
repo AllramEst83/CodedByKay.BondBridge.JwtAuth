@@ -13,8 +13,8 @@
 
         public static class Policies
         {
-            public const string AuthAPIAdmin = "CodedByKay.BondBridge.API.Admin";
-            public const string AuthAPICommonUser = "CodedByKay.BondBridge.API.CommonUser";
+            public const string CodedByKayBondBridgeApiAdmin = "CodedByKay.BondBridge.API.Admin";
+            public const string CodedByKayBondBridgeApiCommonUser = "CodedByKay.BondBridge.API.CommonUser";
         }
     }
 }
