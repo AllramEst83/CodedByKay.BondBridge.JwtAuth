@@ -26,7 +26,7 @@ To use the `JwtAuthExtension` in your project, follow these steps:
 1. In your `Startup.cs`, import the namespace:
 
 ```csharp
-   using YourNamespace.JwtAuthExtension;
+   using CodedByKay.BondBridge.JwtAuth.JwtAuthExtension;
 ````
 Call the AddJwtAuthentication extension method within the ConfigureServices method of your Startup.cs, passing the necessary parameters:
 
