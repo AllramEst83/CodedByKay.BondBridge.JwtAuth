@@ -40,9 +40,9 @@ public void ConfigureServices(IServiceCollection services)
 ### Configuration
 Customize your JWT authentication by modifying the parameters passed to AddJwtAuthentication:
 
-- secretKey: Your secret key for signing tokens.
-- issuer: The issuer of the token.
-- audience: The audience of the token.
+- `secretKey`: Your secret key for signing tokens.
+- `issuer`: The issuer of the token.
+- `audience`: The audience of the token.
 
 ### Contributing
 Contributions to the JwtAuthExtension library are welcome. Please follow the standard fork-and-pull request workflow.
