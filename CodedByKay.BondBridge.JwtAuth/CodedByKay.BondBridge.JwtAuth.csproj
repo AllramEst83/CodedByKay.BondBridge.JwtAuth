@@ -6,6 +6,23 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>CodedByKay.BondBridge.JwtAuth</PackageId>
+    <Version>1.0.0-alpha</Version>
+    <Owner>Kay Wiberg</Owner>
+    <Authors>Kay Wiberg</Authors>
+    <Company>CodedByKay</Company>
+    <Product>BondBridge JwtAuth</Product>
+    <Description>The JwtAuthExtension class enhances ASP.NET Core services with JWT authentication, enabling secure token handling and access control. It configures token validation and authorization policies based on key parameters like secret key, issuer, and audience, ensuring secure user authentication and authorization.</Description>
+    <PackageTags>JWT;Authentication;Security;ASPNETCore;TokenValidation;Authorization</PackageTags>
+    <RepositoryUrl>https://github.com/AllramEst83/CodedByKay.BondBridge.JwtAuth</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
