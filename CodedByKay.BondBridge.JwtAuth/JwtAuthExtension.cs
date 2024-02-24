@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace CodedByKay.BondBridge.JwtAuth
@@ -70,10 +71,10 @@ namespace CodedByKay.BondBridge.JwtAuth
         public static string GenerateToken(string secretKey, string issuer, string audience, string username, string role)
         {
             var claims = new List<Claim>
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, username),
-            new Claim(TokenValidationConstants.Roles.Role, role)
-        };
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(TokenValidationConstants.Roles.Role, role)
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -86,6 +87,16 @@ namespace CodedByKay.BondBridge.JwtAuth
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public static string GenerateSecretKey()
+        {
+            var randomBytes = new byte[32]; // 256 bits
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return Convert.ToBase64String(randomBytes); // Convert to Base64 for easier use in configurations
         }
     }
 
