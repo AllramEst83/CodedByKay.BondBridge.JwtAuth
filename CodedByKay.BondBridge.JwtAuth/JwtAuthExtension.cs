@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace CodedByKay.BondBridge.JwtAuth
@@ -60,15 +62,30 @@ namespace CodedByKay.BondBridge.JwtAuth
                     policy => policy.RequireClaim(
                         TokenValidationConstants.Roles.Role,
                         TokenValidationConstants.Roles.CommonUserAccess));
-
-                options.AddPolicy(
-                TokenValidationConstants.Policies.AuthAPIEditUser,
-                policy => policy.RequireClaim(
-                    TokenValidationConstants.Roles.Role,
-                    TokenValidationConstants.Roles.EditUserAccess));
             });
 
             return services;
+        }
+
+        public static string GenerateToken(string secretKey, string issuer, string audience, string username, string role)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(ClaimTypes.Role, role)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

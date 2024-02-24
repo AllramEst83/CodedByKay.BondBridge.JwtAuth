@@ -11,7 +11,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>CodedByKay.BondBridge.JwtAuth</PackageId>
-    <Version>1.0.2-alpha</Version>
+    <Version>1.0.3-alpha</Version>
     <Owner>Kay Wiberg</Owner>
     <Authors>Kay Wiberg</Authors>
     <Company>CodedByKay</Company>
