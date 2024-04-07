@@ -68,13 +68,17 @@ namespace CodedByKay.BondBridge.JwtAuth
             return services;
         }
 
-        public static string GenerateToken(string secretKey, string issuer, string audience, string username, string role)
+        public static string GenerateToken(string secretKey, string issuer, string audience, string username, List<string> roles)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
-                new Claim(TokenValidationConstants.Roles.Role, role)
+                new Claim(JwtRegisteredClaimNames.Sub, username)
             };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(TokenValidationConstants.Roles.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -83,7 +87,7 @@ namespace CodedByKay.BondBridge.JwtAuth
                 issuer: issuer,
                 audience: audience,
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
